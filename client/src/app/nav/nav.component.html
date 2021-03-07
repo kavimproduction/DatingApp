@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Dating App</a>
             
-              <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="accountService.currentUser$ | async">  
                 <li class="nav-item">
                   <a class="nav-link" href="#">Matches</a>
                 </li>
@@ -14,7 +14,19 @@
                   <a class="nav-link" href="#">Massages</a>
                 </li>
               </ul>
-              <form #LoginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off"> 
+
+              <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown> 
+                  <a class="dropdown-toggle text-light" dropdownToggle> 
+                      Welcome User
+                  </a>
+                  <div class="dropdown-menu mt-3" *dropdownMenu > 
+                    <a class="dropdown-item" dropdown-item>Edit Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" dropdown-item (click)="logout()">Loguot</a>
+                  </div>
+                </div>
+
+              <form *ngIf="(accountService.currentUser$ | async) == null" #LoginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off"> 
                 <input 
                 name="username"
                 [(ngModel)]="model.username"
@@ -30,6 +42,7 @@
                 placeholder="Password">
 
                 <button class="btn btn-outline-success" type="submit">Login</button>
+                <!-- <button type="button" class="btn btn-primary">this my btn</button> -->
               </form>
             </div>
           </div>
