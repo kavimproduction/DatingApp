@@ -27,6 +27,7 @@ const routes: Routes = [
   {path: 'not-found', component: NotFoundComponent},
   {path: 'server-error', component: ServerErrorComponent},
   {path:'**', component: NotFoundComponent,pathMatch: 'full'},
+  //test co
 ];
 
 @NgModule({
