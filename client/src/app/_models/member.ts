@@ -11,7 +11,7 @@ import { Photo } from "./photo";
         gender: string;
         introduction: string;
         lookingFor: string;
-        intrest: string;
+        interests: string;
         city: string;
         country: string;
         photos: Photo[];
